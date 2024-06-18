@@ -1,0 +1,329 @@
+
+
+public class Main {
+    public static void main(String[] args) {
+
+
+            Bear bear = new Bear();
+            bear.setName("Max");
+            bear.setSex("male");
+            bear.setSick(false);
+
+            Zebra zebra = new Zebra();
+            zebra.setName("Ara");
+            zebra.setSex("female");
+            zebra.setSick(true);
+
+
+            Employee emp1 = new Employee("John", "Doe", "part-time");
+            Employee emp2 = new Employee("Johns", "Does", "full-time");
+
+
+            emp1.assignAnimal(bear);
+            emp2.assignAnimal(zebra);
+
+
+            emp1.feedAnimal(bear, 15, false);
+            emp2.feedAnimal(zebra, 10, false);
+
+
+            emp1.feedAnimal(bear, 25, true);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+ public interface Animal {
+    String name();
+     String getName();
+        String setname();
+        String setSex();
+        String getSex();
+        String setSex() {
+        }
+     String boolean isSick();
+       String void setSick();
+        void feed(double foodAmount, boolean isLiquid) throws Exception;
+
+
+}
+public class Feeding {
+    private double foodQuantity;
+    private boolean liquidFood;
+
+    public Feeding(double foodQuantity, boolean liquidFood) {
+        this.foodQuantity = foodQuantity;
+        this.liquidFood = liquidFood;
+    }
+
+    public double getFoodQuantity() {
+        return foodQuantity;
+    }
+
+    public boolean isLiquidFood() {
+        return liquidFood;
+    }
+}
+public class Employee {
+    private String firstName;
+    private String lastName;
+    private String position;
+    private List<Animal> assignedAnimals;
+
+    public Employee(String firstName, String lastName, String position) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.position = position;
+        this.assignedAnimals = new ArrayList<>();
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public void assignAnimal(Animal animal) throws Exception {
+        int maxAnimals = "part-time".equals(position) ? 10 : 50;
+        if (assignedAnimals.size() >= maxAnimals) {
+            throw new Exception("Cannot assign more animals to this employee");
+        }
+        assignedAnimals.add(animal);
+    }
+
+    public void removeAnimal(Animal animal) throws Exception {
+        if (!assignedAnimals.remove(animal)) {
+            throw new Exception("Animal not assigned to this employee");
+        }
+    }
+
+    public void feedAnimal(Animal animal, double foodAmount, boolean isLiquid) throws Exception {
+        if (!assignedAnimals.contains(animal)) {
+            throw new Exception("This animal is not assigned to this employee");
+        }
+        animal.feed(foodAmount, isLiquid);
+    }
+}
+
+public class Bear implements Animal {
+    private String name;
+    private String sex;
+    private boolean sick;
+    private ArrayList<Feeding> feedings = new ArrayList<>();
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getSex() {
+        return sex;
+    }
+
+    @Override
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    @Override
+    public boolean isSick() {
+        return sick;
+    }
+
+    @Override
+    public void setSick(boolean sick) {
+        this.sick = sick;
+    }
+
+    @Override
+    public void feed(double foodAmount, boolean isLiquid) throws Exception {
+        double maxFood = 0;
+        boolean requiredLiquid = false;
+
+        if (sick(true) {
+            if ("male".equals(sex)) {
+                maxFood = 50;
+                requiredLiquid = false;
+            } else if ("female".equals(sex)) {
+                maxFood = 40;
+                requiredLiquid = false;
+            }
+        } else {
+            if ("male".equals(sex)) {
+                maxFood = 20;
+                requiredLiquid = true;
+            } else if ("female".equals(sex)) {
+                maxFood = 30;
+                requiredLiquid = true;
+            }
+        }
+
+        if (foodAmount > maxFood || isLiquid != requiredLiquid) {
+            throw new Exception("Invalid feeding parameters for Bear");
+        }
+
+        feedings.add(new Feeding(foodAmount, isLiquid));
+    }
+}
+
+public class Bear implements Animal {
+    private String name;
+    private String sex;
+    private boolean sick;
+    private ArrayList<Feeding> feedings = new ArrayList<>();
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getSex() {
+        return sex;
+    }
+
+    @Override
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    @Override
+    public boolean isSick() {
+        return sick;
+    }
+
+    @Override
+    public void setSick(boolean sick) {
+        this.sick = sick;
+    }
+
+    @Override
+    public void feed(double foodAmount, boolean isLiquid) throws Exception {
+        double maxFood = 0;
+        boolean requiredLiquid = false;
+
+        if (sick(true) {
+            if ("male".equals(sex)) {
+                maxFood = 50;
+                requiredLiquid = false;
+            } else if ("female".equals(sex)) {
+                maxFood = 40;
+                requiredLiquid = false;
+            }
+        } else {
+            if ("male".equals(sex)) {
+                maxFood = 20;
+                requiredLiquid = true;
+            } else if ("female".equals(sex)) {
+                maxFood = 30;
+                requiredLiquid = true;
+            }
+        }
+
+        if (foodAmount > maxFood || isLiquid != requiredLiquid) {
+            throw new Exception("Invalid feeding parameters for Bear");
+        }
+
+        feedings.add(new Feeding(foodAmount, isLiquid));
+    }
+}
+
+public class Zebra {
+    public class Zebra implements Animal {
+        private String name;
+        private String sex;
+        private boolean sick;
+        private ArrayList<Feeding> feedings = new ArrayList<>();
+
+        @Override
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String getSex() {
+            return sex;
+        }
+
+        @Override
+        public void setSex(String sex) {
+            this.sex = sex;
+        }
+
+        @Override
+        public boolean isSick() {
+            return sick;
+        }
+
+        @Override
+        public void setSick(boolean sick) {
+            this.sick = sick;
+        }
+
+        @Override
+        public void feed(double foodAmount, boolean isLiquid) throws Exception {
+            double maxFood = 0;
+            boolean requiredLiquid = false;
+
+            if (sick(true)) {
+                if ("male".equals(sex)) {
+                    maxFood = 40;
+                    requiredLiquid = false;
+                } else if ("female".equals(sex)) {
+                    maxFood = 30;
+                    requiredLiquid = false;
+                }
+            } else {
+                if ("male".equals(sex)) {
+                    maxFood = 25;
+                    requiredLiquid = false;
+                } else if ("female".equals(sex)) {
+                    maxFood = 20;
+                    requiredLiquid = false;
+                }
+            }
+
+            if (foodAmount > maxFood || isLiquid != requiredLiquid) {
+                throw new Exception("Invalid feeding parameters for Zebra");
+            }
+
+            feedings.add(new Feeding(foodAmount, isLiquid));
+        }
+    }
+
+}
